@@ -14,8 +14,9 @@ public class astroid_collision {
 		arr_size=input.nextInt();
 		
 		int astr[]=new int[arr_size];
-		int result[]=new int[arr_size];
 		
+		int result[]=new int[arr_size];
+				
 		System.out.println("Enter values");
 		
 		for(i=0;i<arr_size;i++)
@@ -24,60 +25,62 @@ public class astroid_collision {
 			
 		}
 		
-		
 		for(i=0,j=-1;i<arr_size;i++)
 		{
-		
-			 if((result.length==0) || astr[i]>0)
+				
+			//add astroid to result if positive or first value
+			 if((j== -1) || astr[i]>0)
 			 {		
 				 j++;
 				 result[j]=astr[i];
-			 }
-			 else 
+ 			 }
+			 else //if astroid is negative
 			 {
-				 while(true)
+				 while(true) 
 				 {
-					 result_top=result[j];
 					 
-					 if(result_top < 0)
+					 result_top=result[j];//get top of result array
+					 
+					 if(result_top < 0) 
 					 {
 						 j++;
-						 result[j]=astr[i];
-						 break;
+						 result[j]=astr[i]; //if top is negative add to result array
+ 						 break;
 					 }
-					 else if (result_top==-astr[i])
-					 {
-						j--;
-						break;
-							 
-					 }
-					 else if(result_top> - astr[i])
-					{
-						break; 
-					}
 					 else
-					 {
-						 j--;
-						 
-						 if(j==0)
+					 { 
+						 if (result_top == -astr[i])
 						 {
-							 j++;
-							 result[j]=astr[i];
-							 break;
+							 j--; //if top is equal to -(astroid) both destroyed
+ 							 break;			 
+						 }
+						 else if(result_top > - astr[i])
+						 {
+ 							 break; //if top is greater than -(astroid)
+						 }
+						 else
+						 {
+							 j--;//if  -(astroid) is greater destroy top
+ 
+							 if(j== -1) //if all elements collided last element is largest
+							 	{
+								 	j++;
+								 	result[j]=astr[i];
+								 	break;
+							 	}
 						 }
 					 }
 				 
 				 
 			 }
-			 
-				 
+			 				 
 			 }
 			
 		}
-		
 		for(i=0;i<=j;i++)
 		{
-			System.out.println(result[i]);
+			
+			System.out.print(result[i]+ " ");
 		}
 		
 
